@@ -18,11 +18,11 @@ describe Checkout do
       subject.add("CC")
       subject.add("CC")
       expect { subject.total }.to output(
-        <<-EOT.gsub(/^\s+/, '')
+                                      <<-EOT.gsub(/^\s+/, '')
         Input: PC CC CC
         Output: $4.35
-        EOT
-        ).to_stdout
+                                  EOT
+                                  ).to_stdout
     end
   end
 end
