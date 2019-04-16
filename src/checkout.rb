@@ -13,7 +13,7 @@ class Checkout
   def initialize(pricing_rules = nil)
     @buyer_bills = []
     @pricing_rules = pricing_rules
-    # total
+    total
   end
 
   def add(item)
