@@ -13,7 +13,7 @@ class Checkout
   def initialize(pricing_rules = nil)
     @buyer_bills = []
     @pricing_rules = pricing_rules
-    total
+    # total
   end
 
   def add(item)
@@ -36,16 +36,23 @@ class Checkout
   end
 
   def final_price(code)
-    @pricing_rules.get[code].each { |k, v| break (v) if k.cover?(count_of(code))}
+    (@pricing_rules.get[code].each { |k, v| break (v) if k.cover?(count_of(code))}*count_of(code)).round(3)
+  end
+
+  def price_string
+    if buyer_bills.any?
+      puts "Output: $#{final_price(buyer_bills.last.item)}"
+    else
+      puts "Output: $0"
+    end
   end
 
   def check_availability(code)
     abort("Don't have this drink - #{code}") unless DRINKS.has_key?(code)
   end
 
-
   def total
     drink_string
-    puts "Output: $4.35"
+    price_string
   end
 end
